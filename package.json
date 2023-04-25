@@ -1,0 +1,16 @@
+{
+  "name": "tree-sitter-piglet",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bindings/node",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "MPL2.0",
+  "dependencies": {
+    "nan": "^2.17.0"
+  },
+  "devDependencies": {
+    "tree-sitter-cli": "^0.20.8"
+  }
+}
