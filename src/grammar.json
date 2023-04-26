@@ -32,7 +32,7 @@
         "type": "REPEAT1",
         "content": {
           "type": "PATTERN",
-          "value": "[\\f\\n\\r\\t, \\u000B\\u001C\\u001D\\u001E\\u001F\\u2028\\u2029\\u1680\\u2000\\u2001\\u2002\\u2003\\u2004\\u2005\\u2006\\u2008\\u2009\\u200a\\u205f\\u3000]"
+          "value": "[\\f\\n\\r\\t ]"
         }
       }
     },
@@ -41,15 +41,15 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "list_lit"
+          "name": "list"
         },
         {
           "type": "SYMBOL",
-          "name": "keyword_lit"
+          "name": "keyword"
         }
       ]
     },
-    "keyword_lit": {
+    "keyword": {
       "type": "SEQ",
       "members": [
         {
@@ -63,21 +63,200 @@
           "type": "REPEAT",
           "content": {
             "type": "PATTERN",
-            "value": "[a-zA-Z0-9-!?\\/]"
+            "value": "[a-zA-Z0-9+-_\\|!?\\$<>\\.\\*%=<>\\/&]"
           }
         }
       ]
     },
-    "list_lit": {
-      "type": "SEQ",
+    "symbol": {
+      "type": "CHOICE",
       "members": [
         {
           "type": "SYMBOL",
-          "name": "_bare_list_lit"
+          "name": "_symbol1"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_symbol2"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_symbol3"
         }
       ]
     },
-    "_bare_list_lit": {
+    "_symbol1": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "PATTERN",
+          "value": "[a-zA-Z0-9+-_\\|!?\\$<>\\.\\*%=<>\\/&]"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "PATTERN",
+            "value": "[a-zA-Z0-9+-_\\|!?\\$<>\\.\\*%=<>\\/&]"
+          }
+        }
+      ]
+    },
+    "_symbol2": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "PATTERN",
+          "value": "[a-zA-Z0-9+-_\\|!?\\$<>\\.\\*%=<>\\/&]"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "PATTERN",
+            "value": "[a-zA-Z0-9+-_\\|!?\\$<>\\.\\*%=<>\\/&]"
+          }
+        },
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": ":"
+          }
+        },
+        {
+          "type": "PATTERN",
+          "value": "[a-zA-Z0-9+-_\\|!?\\$<>\\.\\*%=<>\\/&]"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "PATTERN",
+            "value": "[a-zA-Z0-9+-_\\|!?\\$<>\\.\\*%=<>\\/&]"
+          }
+        }
+      ]
+    },
+    "_symbol3": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "PATTERN",
+          "value": "[a-zA-Z0-9+-_\\|!?\\$<>\\.\\*%=<>\\/&]"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "PATTERN",
+            "value": "[a-zA-Z0-9+-_\\|!?\\$<>\\.\\*%=<>\\/&]"
+          }
+        },
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": ":"
+          }
+        },
+        {
+          "type": "PATTERN",
+          "value": "[a-zA-Z0-9+-_\\|!?\\$<>\\.\\*%=<>\\/&]"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "PATTERN",
+            "value": "[a-zA-Z0-9+-_\\|!?\\$<>\\.\\*%=<>\\/&]"
+          }
+        },
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": ":"
+          }
+        },
+        {
+          "type": "PATTERN",
+          "value": "[a-zA-Z0-9+-_\\|!?\\$<>\\.\\*%=<>\\/&]"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "PATTERN",
+            "value": "[a-zA-Z0-9+-_\\|!?\\$<>\\.\\*%=<>\\/&]"
+          }
+        }
+      ]
+    },
+    "_metadata": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "marker",
+          "content": {
+            "type": "STRING",
+            "value": "^"
+          }
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_gap"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "value",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "keyword"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "symbol"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "vector": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_metadata"
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_bare_vector"
+        }
+      ]
+    },
+    "list": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_metadata"
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_bare_list"
+        }
+      ]
+    },
+    "_bare_list": {
       "type": "SEQ",
       "members": [
         {
@@ -114,6 +293,47 @@
           "content": {
             "type": "STRING",
             "value": ")"
+          }
+        }
+      ]
+    },
+    "_bare_vector": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "open",
+          "content": {
+            "type": "STRING",
+            "value": "["
+          }
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "FIELD",
+                "name": "value",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "_form"
+                }
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_gap"
+              }
+            ]
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "close",
+          "content": {
+            "type": "STRING",
+            "value": "]"
           }
         }
       ]

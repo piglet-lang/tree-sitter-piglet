@@ -1,8 +1,8 @@
-const WHITESPACE_CHAR =
-      /[\f\n\r\t, \u000B\u001C\u001D\u001E\u001F\u2028\u2029\u1680\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2008\u2009\u200a\u205f\u3000]/;
+const WHITESPACE_CHAR = /[\f\n\r\t ]/
 
-const WHITESPACE =
-      token(repeat1(WHITESPACE_CHAR));
+const WHITESPACE = token(repeat1(WHITESPACE_CHAR))
+
+const SYMBOL_REGEX = /[a-zA-Z0-9+-_\|!?\$<>\.\*%=<>\/&]/
 
 module.exports = grammar({
     name: 'piglet',
@@ -18,20 +18,47 @@ module.exports = grammar({
         WHITESPACE,
 
         _form: $ =>
-        choice($.list_lit, $.keyword_lit),
+        choice($.list, $.keyword),
 
-        keyword_lit: $ =>
-        seq(token(":"), repeat(/[a-zA-Z0-9-!?\/]/)),
+        keyword: $ =>
+        seq(token(":"), repeat(SYMBOL_REGEX)),
 
-        list_lit: $ =>
-        seq(//repeat($._metadata_lit),
-            $._bare_list_lit),
+        symbol: $ => choice($._symbol1, $._symbol2, $._symbol3),
 
-        _bare_list_lit: $ =>
+        _symbol1: $ => seq(SYMBOL_REGEX, repeat(SYMBOL_REGEX)),
+        _symbol2: $ => seq(
+            SYMBOL_REGEX, repeat(SYMBOL_REGEX), token(":"),
+            SYMBOL_REGEX, repeat(SYMBOL_REGEX)
+        ),
+        _symbol3: $ => seq(
+            SYMBOL_REGEX, repeat(SYMBOL_REGEX), token(":"),
+            SYMBOL_REGEX, repeat(SYMBOL_REGEX), token(":"),
+            SYMBOL_REGEX, repeat(SYMBOL_REGEX)
+        ),
+
+        _metadata: $ =>
+        seq(field('marker', "^"),
+            repeat($._gap),
+            field('value', choice(/*$.dict, $.string,*/ $.keyword, $.symbol))),
+        vector: $ =>
+        seq(repeat($._metadata),
+            $._bare_vector),
+
+        list: $ =>
+        seq(repeat($._metadata),
+            $._bare_list),
+
+        _bare_list: $ =>
         seq(field('open', "("),
             repeat(choice(field('value', $._form),
                           $._gap)),
             field('close', ")")),
+
+        _bare_vector: $ =>
+        seq(field('open', "["),
+            repeat(choice(field('value', $._form),
+                          $._gap)),
+            field('close', "]")),
 
     }
 });
