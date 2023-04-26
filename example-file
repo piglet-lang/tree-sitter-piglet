@@ -1,1 +1,1 @@
-(:a :b :c)
+(let [foo 123] (foo bar))

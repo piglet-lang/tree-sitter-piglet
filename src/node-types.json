@@ -1,10 +1,5 @@
 [
   {
-    "type": "keyword",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "list",
     "named": true,
     "fields": {
@@ -43,15 +38,19 @@
         "required": false,
         "types": [
           {
-            "type": "keyword",
-            "named": true
+            "type": ":",
+            "named": false
           },
           {
             "type": "list",
             "named": true
           },
           {
-            "type": "symbol",
+            "type": "symbol1",
+            "named": true
+          },
+          {
+            "type": "vector",
             "named": true
           }
         ]
@@ -67,20 +66,82 @@
       "required": false,
       "types": [
         {
-          "type": "keyword",
+          "type": "list",
           "named": true
         },
         {
-          "type": "list",
+          "type": "symbol1",
+          "named": true
+        },
+        {
+          "type": "vector",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "symbol",
+    "type": "symbol1",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "vector",
+    "named": true,
+    "fields": {
+      "close": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "]",
+            "named": false
+          }
+        ]
+      },
+      "marker": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "^",
+            "named": false
+          }
+        ]
+      },
+      "open": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "[",
+            "named": false
+          }
+        ]
+      },
+      "value": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": ":",
+            "named": false
+          },
+          {
+            "type": "list",
+            "named": true
+          },
+          {
+            "type": "symbol1",
+            "named": true
+          },
+          {
+            "type": "vector",
+            "named": true
+          }
+        ]
+      }
+    }
   },
   {
     "type": "(",

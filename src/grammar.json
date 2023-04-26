@@ -46,146 +46,63 @@
         {
           "type": "SYMBOL",
           "name": "keyword"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "symbol"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "vector"
         }
       ]
     },
     "keyword": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "TOKEN",
-          "content": {
-            "type": "STRING",
-            "value": ":"
+      "type": "PREC",
+      "value": 4,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "STRING",
+              "value": ":"
+            }
+          },
+          {
+            "type": "REPEAT1",
+            "content": {
+              "type": "PATTERN",
+              "value": "[a-zA-Z0-9+-_\\|!?\\$<>\\.\\*%=<>\\/&]"
+            }
           }
-        },
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "PATTERN",
-            "value": "[a-zA-Z0-9+-_\\|!?\\$<>\\.\\*%=<>\\/&]"
-          }
-        }
-      ]
+        ]
+      }
     },
     "symbol": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "_symbol1"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_symbol2"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_symbol3"
-        }
-      ]
+      "type": "PREC",
+      "value": 3,
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "symbol1"
+          }
+        ]
+      }
     },
-    "_symbol1": {
-      "type": "SEQ",
-      "members": [
-        {
+    "symbol1": {
+      "type": "PREC",
+      "value": 2,
+      "content": {
+        "type": "REPEAT1",
+        "content": {
           "type": "PATTERN",
           "value": "[a-zA-Z0-9+-_\\|!?\\$<>\\.\\*%=<>\\/&]"
-        },
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "PATTERN",
-            "value": "[a-zA-Z0-9+-_\\|!?\\$<>\\.\\*%=<>\\/&]"
-          }
         }
-      ]
-    },
-    "_symbol2": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "PATTERN",
-          "value": "[a-zA-Z0-9+-_\\|!?\\$<>\\.\\*%=<>\\/&]"
-        },
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "PATTERN",
-            "value": "[a-zA-Z0-9+-_\\|!?\\$<>\\.\\*%=<>\\/&]"
-          }
-        },
-        {
-          "type": "TOKEN",
-          "content": {
-            "type": "STRING",
-            "value": ":"
-          }
-        },
-        {
-          "type": "PATTERN",
-          "value": "[a-zA-Z0-9+-_\\|!?\\$<>\\.\\*%=<>\\/&]"
-        },
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "PATTERN",
-            "value": "[a-zA-Z0-9+-_\\|!?\\$<>\\.\\*%=<>\\/&]"
-          }
-        }
-      ]
-    },
-    "_symbol3": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "PATTERN",
-          "value": "[a-zA-Z0-9+-_\\|!?\\$<>\\.\\*%=<>\\/&]"
-        },
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "PATTERN",
-            "value": "[a-zA-Z0-9+-_\\|!?\\$<>\\.\\*%=<>\\/&]"
-          }
-        },
-        {
-          "type": "TOKEN",
-          "content": {
-            "type": "STRING",
-            "value": ":"
-          }
-        },
-        {
-          "type": "PATTERN",
-          "value": "[a-zA-Z0-9+-_\\|!?\\$<>\\.\\*%=<>\\/&]"
-        },
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "PATTERN",
-            "value": "[a-zA-Z0-9+-_\\|!?\\$<>\\.\\*%=<>\\/&]"
-          }
-        },
-        {
-          "type": "TOKEN",
-          "content": {
-            "type": "STRING",
-            "value": ":"
-          }
-        },
-        {
-          "type": "PATTERN",
-          "value": "[a-zA-Z0-9+-_\\|!?\\$<>\\.\\*%=<>\\/&]"
-        },
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "PATTERN",
-            "value": "[a-zA-Z0-9+-_\\|!?\\$<>\\.\\*%=<>\\/&]"
-          }
-        }
-      ]
+      }
     },
     "_metadata": {
       "type": "SEQ",
@@ -348,7 +265,10 @@
   "conflicts": [],
   "precedences": [],
   "externals": [],
-  "inline": [],
+  "inline": [
+    "keyword",
+    "symbol"
+  ],
   "supertypes": []
 }
 

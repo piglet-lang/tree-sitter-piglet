@@ -7,6 +7,10 @@ const SYMBOL_REGEX = /[a-zA-Z0-9+-_\|!?\$<>\.\*%=<>\/&]/
 module.exports = grammar({
     name: 'piglet',
 
+    inline: $ =>
+    [$.keyword,
+     $.symbol],
+
     rules: {
         source: $ =>
         repeat(choice($._form,
@@ -18,23 +22,29 @@ module.exports = grammar({
         WHITESPACE,
 
         _form: $ =>
-        choice($.list, $.keyword),
+        choice($.list, $.keyword, $.symbol, $.vector),
 
         keyword: $ =>
-        seq(token(":"), repeat(SYMBOL_REGEX)),
+        prec(4, seq(token(":"), repeat1(SYMBOL_REGEX))),
 
-        symbol: $ => choice($._symbol1, $._symbol2, $._symbol3),
+        symbol: $ =>
+        prec(3, choice($.symbol1/*, $._symbol2, $._symbol3*/)),
 
-        _symbol1: $ => seq(SYMBOL_REGEX, repeat(SYMBOL_REGEX)),
-        _symbol2: $ => seq(
-            SYMBOL_REGEX, repeat(SYMBOL_REGEX), token(":"),
-            SYMBOL_REGEX, repeat(SYMBOL_REGEX)
-        ),
-        _symbol3: $ => seq(
-            SYMBOL_REGEX, repeat(SYMBOL_REGEX), token(":"),
-            SYMBOL_REGEX, repeat(SYMBOL_REGEX), token(":"),
-            SYMBOL_REGEX, repeat(SYMBOL_REGEX)
-        ),
+        symbol1: $ =>
+        prec(2, repeat1(SYMBOL_REGEX)),
+
+        // _symbol2: $ =>
+        // prec(1, seq(
+        //     repeat1(SYMBOL_REGEX), token(":"),
+        //     repeat1(SYMBOL_REGEX)
+        // )),
+
+        // _symbol3: $ =>
+        // prec(0, seq(
+        //     repeat1(SYMBOL_REGEX), token(":"),
+        //     repeat1(SYMBOL_REGEX), token(":"),
+        //     repeat1(SYMBOL_REGEX)
+        // )),
 
         _metadata: $ =>
         seq(field('marker', "^"),
