@@ -28,10 +28,8 @@ module.exports = grammar({
         prec(4, seq(token(":"), repeat1(SYMBOL_REGEX))),
 
         symbol: $ =>
-        prec(3, choice($.symbol1/*, $._symbol2, $._symbol3*/)),
+        field('name',token(seq(SYMBOL_REGEX, repeat(SYMBOL_REGEX)))),
 
-        symbol1: $ =>
-        prec(2, repeat1(SYMBOL_REGEX)),
 
         // _symbol2: $ =>
         // prec(1, seq(

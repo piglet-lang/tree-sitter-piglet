@@ -81,27 +81,23 @@
       }
     },
     "symbol": {
-      "type": "PREC",
-      "value": 3,
+      "type": "FIELD",
+      "name": "name",
       "content": {
-        "type": "CHOICE",
+        "type": "SEQ",
         "members": [
           {
-            "type": "SYMBOL",
-            "name": "symbol1"
+            "type": "PATTERN",
+            "value": "[a-zA-Z0-9+-_\\|!?\\$<>\\.\\*%=<>\\/&]"
+          },
+          {
+            "type": "REPEAT",
+            "content": {
+              "type": "PATTERN",
+              "value": "[a-zA-Z0-9+-_\\|!?\\$<>\\.\\*%=<>\\/&]"
+            }
           }
         ]
-      }
-    },
-    "symbol1": {
-      "type": "PREC",
-      "value": 2,
-      "content": {
-        "type": "REPEAT1",
-        "content": {
-          "type": "PATTERN",
-          "value": "[a-zA-Z0-9+-_\\|!?\\$<>\\.\\*%=<>\\/&]"
-        }
       }
     },
     "_metadata": {
