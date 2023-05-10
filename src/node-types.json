@@ -38,19 +38,41 @@
         "required": false,
         "types": [
           {
-            "type": ":",
-            "named": false
-          },
-          {
-            "type": "list",
+            "type": "keyword",
             "named": true
           },
           {
-            "type": "vector",
+            "type": "symbol",
             "named": true
           }
         ]
       }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "keyword",
+          "named": true
+        },
+        {
+          "type": "list",
+          "named": true
+        },
+        {
+          "type": "prefix_name",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "vector",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -62,7 +84,19 @@
       "required": false,
       "types": [
         {
+          "type": "keyword",
+          "named": true
+        },
+        {
           "type": "list",
+          "named": true
+        },
+        {
+          "type": "prefix_name",
+          "named": true
+        },
+        {
+          "type": "symbol",
           "named": true
         },
         {
@@ -71,6 +105,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "symbol",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "vector",
@@ -111,19 +150,41 @@
         "required": false,
         "types": [
           {
-            "type": ":",
-            "named": false
-          },
-          {
-            "type": "list",
+            "type": "keyword",
             "named": true
           },
           {
-            "type": "vector",
+            "type": "symbol",
             "named": true
           }
         ]
       }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "keyword",
+          "named": true
+        },
+        {
+          "type": "list",
+          "named": true
+        },
+        {
+          "type": "prefix_name",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "vector",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -132,10 +193,6 @@
   },
   {
     "type": ")",
-    "named": false
-  },
-  {
-    "type": ":",
     "named": false
   },
   {
@@ -149,5 +206,13 @@
   {
     "type": "^",
     "named": false
+  },
+  {
+    "type": "keyword",
+    "named": true
+  },
+  {
+    "type": "prefix_name",
+    "named": true
   }
 ]

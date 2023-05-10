@@ -2,14 +2,12 @@ const WHITESPACE_CHAR = /[\f\n\r\t ]/
 
 const WHITESPACE = token(repeat1(WHITESPACE_CHAR))
 
-const SYMBOL_REGEX = /[a-zA-Z0-9+-_\|!?\$<>\.\*%=<>\/&]/
+const SYMBOL_REGEX = /[\p{L}0-9+_\|!?\$<>\.\*%=<>\/&-]/
 
 module.exports = grammar({
     name: 'piglet',
 
-    inline: $ =>
-    [$.keyword,
-     $.symbol],
+    inline: $ => [],
 
     rules: {
         source: $ =>
@@ -21,28 +19,24 @@ module.exports = grammar({
         _ws: $ =>
         WHITESPACE,
 
-        _form: $ =>
-        choice($.list, $.keyword, $.symbol, $.vector),
+        _form: $ => choice($.symbol,
+                           $.keyword,
+                           $.prefix_name,
+                           $.list,
+                           $.vector),
 
-        keyword: $ =>
-        prec(4, seq(token(":"), repeat1(SYMBOL_REGEX))),
+        keyword: $ => token(seq(":", repeat1(SYMBOL_REGEX))),
 
-        symbol: $ =>
-        field('name',token(seq(SYMBOL_REGEX, repeat(SYMBOL_REGEX)))),
+        symbol: $ => choice($._symbol1, $._symbol2, $._symbol3),
 
+        _symbol1: $ => token(repeat1(SYMBOL_REGEX)),
+        _symbol2: $ => token(seq(repeat1(SYMBOL_REGEX), token(":"), repeat1(SYMBOL_REGEX))),
+        _symbol3: $ => token(seq(repeat1(SYMBOL_REGEX), token(":"), repeat1(SYMBOL_REGEX), token(":"), repeat1(SYMBOL_REGEX))),
 
-        // _symbol2: $ =>
-        // prec(1, seq(
-        //     repeat1(SYMBOL_REGEX), token(":"),
-        //     repeat1(SYMBOL_REGEX)
-        // )),
+        prefix_name: $ => token(seq(":", repeat(SYMBOL_REGEX), ":", repeat1(SYMBOL_REGEX))),
 
-        // _symbol3: $ =>
-        // prec(0, seq(
-        //     repeat1(SYMBOL_REGEX), token(":"),
-        //     repeat1(SYMBOL_REGEX), token(":"),
-        //     repeat1(SYMBOL_REGEX)
-        // )),
+        /* This is going to need some fine tuning, we want to align ourselves with the URI/IRI specs. */
+        qname: $ => token(seq(":", repeat(SYMBOL_REGEX), "://", repeat1(SYMBOL_REGEX))),
 
         _metadata: $ =>
         seq(field('marker', "^"),
@@ -58,13 +52,13 @@ module.exports = grammar({
 
         _bare_list: $ =>
         seq(field('open', "("),
-            repeat(choice(field('value', $._form),
+            repeat(choice($._form,
                           $._gap)),
             field('close', ")")),
 
         _bare_vector: $ =>
         seq(field('open', "["),
-            repeat(choice(field('value', $._form),
+            repeat(choice($._form,
                           $._gap)),
             field('close', "]")),
 
