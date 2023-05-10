@@ -22,6 +22,7 @@ module.exports = grammar({
         _form: $ => choice($.symbol,
                            $.keyword,
                            $.prefix_name,
+                           $.string,
                            $.list,
                            $.vector),
 
@@ -38,10 +39,12 @@ module.exports = grammar({
         /* This is going to need some fine tuning, we want to align ourselves with the URI/IRI specs. */
         qname: $ => token(seq(":", repeat(SYMBOL_REGEX), "://", repeat1(SYMBOL_REGEX))),
 
+        string: $ => token(seq("\"", repeat(/[^"]|\\"/), "\"")),
+
         _metadata: $ =>
         seq(field('marker', "^"),
             repeat($._gap),
-            field('value', choice(/*$.dict, $.string,*/ $.keyword, $.symbol))),
+            field('value', choice(/*$.dict,*/ $.string, $.keyword, $.symbol))),
         vector: $ =>
         seq(repeat($._metadata),
             $._bare_vector),

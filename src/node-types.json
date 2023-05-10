@@ -65,6 +65,10 @@
           "named": true
         },
         {
+          "type": "string",
+          "named": true
+        },
+        {
           "type": "symbol",
           "named": true
         },
@@ -93,6 +97,10 @@
         },
         {
           "type": "prefix_name",
+          "named": true
+        },
+        {
+          "type": "string",
           "named": true
         },
         {
@@ -177,6 +185,10 @@
           "named": true
         },
         {
+          "type": "string",
+          "named": true
+        },
+        {
           "type": "symbol",
           "named": true
         },
@@ -213,6 +225,10 @@
   },
   {
     "type": "prefix_name",
+    "named": true
+  },
+  {
+    "type": "string",
     "named": true
   }
 ]
