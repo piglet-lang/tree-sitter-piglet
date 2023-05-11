@@ -14,7 +14,7 @@ module.exports = grammar({
         repeat(choice($._form,
                       $._gap)),
 
-        _gap: $ => choice($._ws),
+        _gap: $ => choice($._ws, $.comment),
 
         _ws: $ =>
         WHITESPACE,
@@ -22,7 +22,9 @@ module.exports = grammar({
         _form: $ => choice($.symbol,
                            $.keyword,
                            $.prefix_name,
+                           $.qname,
                            $.string,
+
                            $.list,
                            $.vector),
 
@@ -40,6 +42,8 @@ module.exports = grammar({
         qname: $ => token(seq(":", repeat(SYMBOL_REGEX), "://", repeat1(SYMBOL_REGEX))),
 
         string: $ => token(seq("\"", repeat(/[^"]|\\"/), "\"")),
+
+        comment: $ => token(seq(";", repeat(/[^\n]/))),
 
         _metadata: $ =>
         seq(field('marker', "^"),
