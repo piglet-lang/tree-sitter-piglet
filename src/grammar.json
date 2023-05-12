@@ -65,11 +65,19 @@
         },
         {
           "type": "SYMBOL",
+          "name": "number"
+        },
+        {
+          "type": "SYMBOL",
           "name": "list"
         },
         {
           "type": "SYMBOL",
           "name": "vector"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "dict"
         }
       ]
     },
@@ -112,11 +120,20 @@
     "_symbol1": {
       "type": "TOKEN",
       "content": {
-        "type": "REPEAT1",
-        "content": {
-          "type": "PATTERN",
-          "value": "[\\p{L}0-9+_\\|!?\\$<>\\.\\*%=<>\\/&-]"
-        }
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "PATTERN",
+            "value": "[\\p{L}+_\\|!?\\$<>\\.\\*%=<>\\/&-]"
+          },
+          {
+            "type": "REPEAT",
+            "content": {
+              "type": "PATTERN",
+              "value": "[\\p{L}0-9+_\\|!?\\$<>\\.\\*%=<>\\/&-]"
+            }
+          }
+        ]
       }
     },
     "_symbol2": {
@@ -125,7 +142,11 @@
         "type": "SEQ",
         "members": [
           {
-            "type": "REPEAT1",
+            "type": "PATTERN",
+            "value": "[\\p{L}+_\\|!?\\$<>\\.\\*%=<>\\/&-]"
+          },
+          {
+            "type": "REPEAT",
             "content": {
               "type": "PATTERN",
               "value": "[\\p{L}0-9+_\\|!?\\$<>\\.\\*%=<>\\/&-]"
@@ -139,7 +160,11 @@
             }
           },
           {
-            "type": "REPEAT1",
+            "type": "PATTERN",
+            "value": "[\\p{L}+_\\|!?\\$<>\\.\\*%=<>\\/&-]"
+          },
+          {
+            "type": "REPEAT",
             "content": {
               "type": "PATTERN",
               "value": "[\\p{L}0-9+_\\|!?\\$<>\\.\\*%=<>\\/&-]"
@@ -154,7 +179,11 @@
         "type": "SEQ",
         "members": [
           {
-            "type": "REPEAT1",
+            "type": "PATTERN",
+            "value": "[\\p{L}+_\\|!?\\$<>\\.\\*%=<>\\/&-]"
+          },
+          {
+            "type": "REPEAT",
             "content": {
               "type": "PATTERN",
               "value": "[\\p{L}0-9+_\\|!?\\$<>\\.\\*%=<>\\/&-]"
@@ -168,7 +197,11 @@
             }
           },
           {
-            "type": "REPEAT1",
+            "type": "PATTERN",
+            "value": "[\\p{L}+_\\|!?\\$<>\\.\\*%=<>\\/&-]"
+          },
+          {
+            "type": "REPEAT",
             "content": {
               "type": "PATTERN",
               "value": "[\\p{L}0-9+_\\|!?\\$<>\\.\\*%=<>\\/&-]"
@@ -182,11 +215,62 @@
             }
           },
           {
-            "type": "REPEAT1",
+            "type": "PATTERN",
+            "value": "[\\p{L}+_\\|!?\\$<>\\.\\*%=<>\\/&-]"
+          },
+          {
+            "type": "REPEAT",
             "content": {
               "type": "PATTERN",
               "value": "[\\p{L}0-9+_\\|!?\\$<>\\.\\*%=<>\\/&-]"
             }
+          }
+        ]
+      }
+    },
+    "number": {
+      "type": "TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "PATTERN",
+            "value": "[0-9]"
+          },
+          {
+            "type": "REPEAT",
+            "content": {
+              "type": "PATTERN",
+              "value": "[0-9_]"
+            }
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": "."
+                  },
+                  {
+                    "type": "PATTERN",
+                    "value": "[0-9]"
+                  },
+                  {
+                    "type": "REPEAT",
+                    "content": {
+                      "type": "PATTERN",
+                      "value": "[0-9_]"
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
           }
         ]
       }
@@ -366,6 +450,22 @@
         }
       ]
     },
+    "dict": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_metadata"
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_bare_dict"
+        }
+      ]
+    },
     "_bare_list": {
       "type": "SEQ",
       "members": [
@@ -436,6 +536,43 @@
           "content": {
             "type": "STRING",
             "value": "]"
+          }
+        }
+      ]
+    },
+    "_bare_dict": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "open",
+          "content": {
+            "type": "STRING",
+            "value": "{"
+          }
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "_form"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_gap"
+              }
+            ]
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "close",
+          "content": {
+            "type": "STRING",
+            "value": "}"
           }
         }
       ]

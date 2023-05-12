@@ -1,5 +1,105 @@
 [
   {
+    "type": "dict",
+    "named": true,
+    "fields": {
+      "close": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "}",
+            "named": false
+          }
+        ]
+      },
+      "marker": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "^",
+            "named": false
+          }
+        ]
+      },
+      "open": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "{",
+            "named": false
+          }
+        ]
+      },
+      "value": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "keyword",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "symbol",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "dict",
+          "named": true
+        },
+        {
+          "type": "keyword",
+          "named": true
+        },
+        {
+          "type": "list",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "prefix_name",
+          "named": true
+        },
+        {
+          "type": "qname",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "vector",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "list",
     "named": true,
     "fields": {
@@ -61,11 +161,19 @@
           "named": true
         },
         {
+          "type": "dict",
+          "named": true
+        },
+        {
           "type": "keyword",
           "named": true
         },
         {
           "type": "list",
+          "named": true
+        },
+        {
+          "type": "number",
           "named": true
         },
         {
@@ -104,11 +212,19 @@
           "named": true
         },
         {
+          "type": "dict",
+          "named": true
+        },
+        {
           "type": "keyword",
           "named": true
         },
         {
           "type": "list",
+          "named": true
+        },
+        {
+          "type": "number",
           "named": true
         },
         {
@@ -201,11 +317,19 @@
           "named": true
         },
         {
+          "type": "dict",
+          "named": true
+        },
+        {
           "type": "keyword",
           "named": true
         },
         {
           "type": "list",
+          "named": true
+        },
+        {
+          "type": "number",
           "named": true
         },
         {
@@ -260,6 +384,10 @@
     "named": true
   },
   {
+    "type": "number",
+    "named": true
+  },
+  {
     "type": "prefix_name",
     "named": true
   },
@@ -270,5 +398,13 @@
   {
     "type": "string",
     "named": true
+  },
+  {
+    "type": "{",
+    "named": false
+  },
+  {
+    "type": "}",
+    "named": false
   }
 ]
