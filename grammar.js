@@ -26,6 +26,7 @@ module.exports = grammar({
                            $.qname,
                            $.string,
                            $.number,
+                           $.quote,
 
                            $.list,
                            $.vector,
@@ -52,6 +53,8 @@ module.exports = grammar({
         string: $ => token(seq("\"", repeat(/[^"]|\\"/), "\"")),
 
         comment: $ => token(seq(";", repeat(/[^\n]/))),
+
+        quote: $ => seq("'", repeat($._gap), $._form),
 
         _metadata: $ =>
         seq(field('marker', "^"),

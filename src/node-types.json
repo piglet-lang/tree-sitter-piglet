@@ -85,6 +85,10 @@
           "named": true
         },
         {
+          "type": "quote",
+          "named": true
+        },
+        {
           "type": "string",
           "named": true
         },
@@ -185,6 +189,65 @@
           "named": true
         },
         {
+          "type": "quote",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "vector",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "quote",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "dict",
+          "named": true
+        },
+        {
+          "type": "keyword",
+          "named": true
+        },
+        {
+          "type": "list",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "prefix_name",
+          "named": true
+        },
+        {
+          "type": "qname",
+          "named": true
+        },
+        {
+          "type": "quote",
+          "named": true
+        },
+        {
           "type": "string",
           "named": true
         },
@@ -233,6 +296,10 @@
         },
         {
           "type": "qname",
+          "named": true
+        },
+        {
+          "type": "quote",
           "named": true
         },
         {
@@ -341,6 +408,10 @@
           "named": true
         },
         {
+          "type": "quote",
+          "named": true
+        },
+        {
           "type": "string",
           "named": true
         },
@@ -354,6 +425,10 @@
         }
       ]
     }
+  },
+  {
+    "type": "'",
+    "named": false
   },
   {
     "type": "(",
