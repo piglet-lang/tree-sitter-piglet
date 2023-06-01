@@ -37,10 +37,10 @@ module.exports = grammar({
         symbol: $ => choice($._symbol1, $._symbol2, $._symbol3),
 
         _symbol1: $ => token(seq(SYMBOL_HEAD_REGEX, repeat(SYMBOL_REGEX))),
-        _symbol2: $ => token(seq(SYMBOL_HEAD_REGEX, repeat(SYMBOL_REGEX), token(":"),
+        _symbol2: $ => token(seq(SYMBOL_HEAD_REGEX, repeat(SYMBOL_REGEX), ":",
                                  SYMBOL_HEAD_REGEX, repeat(SYMBOL_REGEX))),
-        _symbol3: $ => token(seq(SYMBOL_HEAD_REGEX, repeat(SYMBOL_REGEX), token(":"),
-                                 SYMBOL_HEAD_REGEX, repeat(SYMBOL_REGEX), token(":"),
+        _symbol3: $ => token(seq(SYMBOL_HEAD_REGEX, repeat(SYMBOL_REGEX), ":",
+                                 SYMBOL_HEAD_REGEX, repeat(SYMBOL_REGEX), ":",
                                  SYMBOL_HEAD_REGEX, repeat(SYMBOL_REGEX))),
 
         number: $ => token(seq(/[0-9]/, repeat(/[0-9_]/), optional(seq(".", /[0-9]/, repeat(/[0-9_]/))))),

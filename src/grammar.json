@@ -157,11 +157,8 @@
             }
           },
           {
-            "type": "TOKEN",
-            "content": {
-              "type": "STRING",
-              "value": ":"
-            }
+            "type": "STRING",
+            "value": ":"
           },
           {
             "type": "PATTERN",
@@ -194,11 +191,8 @@
             }
           },
           {
-            "type": "TOKEN",
-            "content": {
-              "type": "STRING",
-              "value": ":"
-            }
+            "type": "STRING",
+            "value": ":"
           },
           {
             "type": "PATTERN",
@@ -212,11 +206,8 @@
             }
           },
           {
-            "type": "TOKEN",
-            "content": {
-              "type": "STRING",
-              "value": ":"
-            }
+            "type": "STRING",
+            "value": ":"
           },
           {
             "type": "PATTERN",
