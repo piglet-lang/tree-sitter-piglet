@@ -65,6 +65,69 @@
           "named": true
         },
         {
+          "type": "elide",
+          "named": true
+        },
+        {
+          "type": "keyword",
+          "named": true
+        },
+        {
+          "type": "list",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "prefix_name",
+          "named": true
+        },
+        {
+          "type": "qname",
+          "named": true
+        },
+        {
+          "type": "quote",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "vector",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "elide",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "dict",
+          "named": true
+        },
+        {
+          "type": "elide",
+          "named": true
+        },
+        {
           "type": "keyword",
           "named": true
         },
@@ -169,6 +232,10 @@
           "named": true
         },
         {
+          "type": "elide",
+          "named": true
+        },
+        {
           "type": "keyword",
           "named": true
         },
@@ -224,6 +291,10 @@
           "named": true
         },
         {
+          "type": "elide",
+          "named": true
+        },
+        {
           "type": "keyword",
           "named": true
         },
@@ -276,6 +347,10 @@
         },
         {
           "type": "dict",
+          "named": true
+        },
+        {
+          "type": "elide",
           "named": true
         },
         {
@@ -388,6 +463,10 @@
           "named": true
         },
         {
+          "type": "elide",
+          "named": true
+        },
+        {
           "type": "keyword",
           "named": true
         },
@@ -425,6 +504,10 @@
         }
       ]
     }
+  },
+  {
+    "type": "#_",
+    "named": false
   },
   {
     "type": "'",

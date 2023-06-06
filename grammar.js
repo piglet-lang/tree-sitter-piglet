@@ -15,7 +15,7 @@ module.exports = grammar({
         repeat(choice($._form,
                       $._gap)),
 
-        _gap: $ => choice($._ws, $.comment),
+        _gap: $ => choice($._ws, $.elide, $.comment),
 
         _ws: $ =>
         WHITESPACE,
@@ -55,6 +55,8 @@ module.exports = grammar({
         comment: $ => token(seq(";", repeat(/[^\n]/))),
 
         quote: $ => seq("'", repeat($._gap), $._form),
+
+        elide: $ => seq("#_", repeat($._gap), $._form),
 
         _metadata: $ =>
         seq(field('marker', "^"),

@@ -26,6 +26,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "elide"
+        },
+        {
+          "type": "SYMBOL",
           "name": "comment"
         }
       ]
@@ -378,6 +382,26 @@
         {
           "type": "STRING",
           "value": "'"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_gap"
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_form"
+        }
+      ]
+    },
+    "elide": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "#_"
         },
         {
           "type": "REPEAT",
