@@ -275,6 +275,11 @@
     }
   },
   {
+    "type": "number",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "quote",
     "named": true,
     "fields": {},
@@ -539,10 +544,6 @@
   },
   {
     "type": "keyword",
-    "named": true
-  },
-  {
-    "type": "number",
     "named": true
   },
   {

@@ -3,7 +3,9 @@ const WHITESPACE_CHAR = /[\f\n\r\t ]/
 const WHITESPACE = token(repeat1(WHITESPACE_CHAR))
 
 const SYMBOL_HEAD_REGEX = /[\p{L}+_\|!?\$<>\.\*%=<>\/&-]/
-const SYMBOL_REGEX = /[\p{L}0-9+_\|!?\$<>\.\*%=<>\/&-]/
+const SYMBOL_REST_REGEX = /[\p{L}0-9+_\|!?\$<>\.\*%=<>\/&-]/
+
+const SYMBOL_REGEX = /[\p{L}+_\|!?\$<>\.\*%=<>\/&-]([\p{L}+_\|!?\$<>\.\*%=<>\/&-][\p{L}0-9+_\|!?\$<>\.\*%=<>\/&-]*)?/
 
 module.exports = grammar({
     name: 'piglet',
@@ -20,14 +22,13 @@ module.exports = grammar({
         _ws: $ =>
         WHITESPACE,
 
-        _form: $ => choice($.symbol,
+        _form: $ => choice($.number,
+                           $.symbol,
                            $.keyword,
                            $.prefix_name,
                            $.qname,
                            $.string,
-                           $.number,
                            $.quote,
-
                            $.list,
                            $.vector,
                            $.dict),
@@ -36,14 +37,15 @@ module.exports = grammar({
 
         symbol: $ => choice($._symbol1, $._symbol2, $._symbol3),
 
-        _symbol1: $ => token(seq(SYMBOL_HEAD_REGEX, repeat(SYMBOL_REGEX))),
-        _symbol2: $ => token(seq(SYMBOL_HEAD_REGEX, repeat(SYMBOL_REGEX), ":",
-                                 SYMBOL_HEAD_REGEX, repeat(SYMBOL_REGEX))),
-        _symbol3: $ => token(seq(SYMBOL_HEAD_REGEX, repeat(SYMBOL_REGEX), ":",
-                                 SYMBOL_HEAD_REGEX, repeat(SYMBOL_REGEX), ":",
-                                 SYMBOL_HEAD_REGEX, repeat(SYMBOL_REGEX))),
+        _symbol1: $ => token(SYMBOL_REGEX),
+        _symbol2: $ => token(seq(SYMBOL_REGEX, ":", SYMBOL_REGEX)),
+        _symbol3: $ => token(seq(SYMBOL_REGEX, ":", SYMBOL_REGEX, ":", SYMBOL_REGEX)),
 
-        number: $ => token(seq(/[0-9]/, repeat(/[0-9_]/), optional(seq(".", /[0-9]/, repeat(/[0-9_]/))))),
+        _regular_number: $ => token(seq(optional("-"), /[0-9]/, repeat(/[0-9_]/), optional(seq(".", /[0-9]/, repeat(/[0-9_]/))))),
+        _radix_number: $ => token(seq(optional("-"), /[0-9]{1,2}/, "r", repeat(/[0-9a-zA-Z_]/))),
+        _hex_number: $ => token(seq(optional("-"), "0x", repeat(/[0-9a-fA-F_]/))),
+
+        number: $ => choice($._regular_number, $._radix_number, $._hex_number),
 
         prefix_name: $ => token(seq(":", repeat(SYMBOL_REGEX), ":", repeat1(SYMBOL_REGEX))),
 
