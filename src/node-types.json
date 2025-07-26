@@ -341,6 +341,7 @@
   {
     "type": "source",
     "named": true,
+    "root": true,
     "fields": {},
     "children": {
       "multiple": true,

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/config.schema.json",
+  "grammars": [
+    {
+      "name": "piglet",
+      "camelcase": "Piglet",
+      "title": "Piglet",
+      "scope": "source.pig",
+      "file-types": [
+        "pig"
+      ],
+      "injection-regex": "^piglet$",
+      "class-name": "TreeSitterPiglet"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "MPL",
+    "description": "Piglet grammar for tree-sitter",
+    "links": {
+      "repository": "https://github.com/piglet-lang/tree-sitter-piglet"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": false,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": false,
+    "zig": false
+  }
+}

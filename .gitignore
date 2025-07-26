@@ -3,3 +3,14 @@ bin
 build
 *.log
 
+.editorconfig
+.gitattributes
+CMakeLists.txt
+Makefile
+Package.swift
+bindings
+go.mod
+pyproject.toml
+setup.py
+src/tree_sitter/alloc.h
+src/tree_sitter/array.h
