@@ -1,5 +1,72 @@
 [
   {
+    "type": "deref",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "deref",
+          "named": true
+        },
+        {
+          "type": "dict",
+          "named": true
+        },
+        {
+          "type": "elide",
+          "named": true
+        },
+        {
+          "type": "keyword",
+          "named": true
+        },
+        {
+          "type": "list",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "prefix_name",
+          "named": true
+        },
+        {
+          "type": "qname",
+          "named": true
+        },
+        {
+          "type": "quote",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "var",
+          "named": true
+        },
+        {
+          "type": "vector",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "dict",
     "named": true,
     "fields": {
@@ -61,6 +128,10 @@
           "named": true
         },
         {
+          "type": "deref",
+          "named": true
+        },
+        {
           "type": "dict",
           "named": true
         },
@@ -98,6 +169,10 @@
         },
         {
           "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "var",
           "named": true
         },
         {
@@ -120,6 +195,10 @@
           "named": true
         },
         {
+          "type": "deref",
+          "named": true
+        },
+        {
           "type": "dict",
           "named": true
         },
@@ -157,6 +236,10 @@
         },
         {
           "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "var",
           "named": true
         },
         {
@@ -228,6 +311,10 @@
           "named": true
         },
         {
+          "type": "deref",
+          "named": true
+        },
+        {
           "type": "dict",
           "named": true
         },
@@ -265,6 +352,10 @@
         },
         {
           "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "var",
           "named": true
         },
         {
@@ -292,6 +383,10 @@
           "named": true
         },
         {
+          "type": "deref",
+          "named": true
+        },
+        {
           "type": "dict",
           "named": true
         },
@@ -329,6 +424,10 @@
         },
         {
           "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "var",
           "named": true
         },
         {
@@ -352,6 +451,10 @@
           "named": true
         },
         {
+          "type": "deref",
+          "named": true
+        },
+        {
           "type": "dict",
           "named": true
         },
@@ -392,6 +495,10 @@
           "named": true
         },
         {
+          "type": "var",
+          "named": true
+        },
+        {
           "type": "vector",
           "named": true
         }
@@ -402,6 +509,29 @@
     "type": "symbol",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "var",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "elide",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "vector",
@@ -465,6 +595,10 @@
           "named": true
         },
         {
+          "type": "deref",
+          "named": true
+        },
+        {
           "type": "dict",
           "named": true
         },
@@ -505,11 +639,19 @@
           "named": true
         },
         {
+          "type": "var",
+          "named": true
+        },
+        {
           "type": "vector",
           "named": true
         }
       ]
     }
+  },
+  {
+    "type": "#'",
+    "named": false
   },
   {
     "type": "#_",
@@ -525,6 +667,10 @@
   },
   {
     "type": ")",
+    "named": false
+  },
+  {
+    "type": "@",
     "named": false
   },
   {
